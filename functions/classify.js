@@ -3,14 +3,13 @@ import axios from 'axios';
 const CLARIFAI_API_KEY = '7eb37963c0644a6f868d69789ad62b58'; // Replace with your API key
 const CLARIFAI_API_URL = 'https://api.clarifai.com/v2/models/general-image-recognition/outputs';
 
-// Serverless function handler
 export async function handler(event, context) {
-  const { url } = event.queryStringParameters;
+  const imageUrl = event.queryStringParameters.url; // Extract the URL from the query parameter
 
-  if (!url) {
+  if (!imageUrl) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'Image URL is required' })
+      body: JSON.stringify({ error: 'Image URL is required' }),
     };
   }
 
@@ -18,13 +17,13 @@ export async function handler(event, context) {
     const response = await axios.post(
       CLARIFAI_API_URL,
       {
-        inputs: [{ data: { image: { url } } }]
+        inputs: [{ data: { image: { url: imageUrl } } }],
       },
       {
         headers: {
           Authorization: `Key ${CLARIFAI_API_KEY}`,
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       }
     );
 
@@ -32,13 +31,13 @@ export async function handler(event, context) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(predictions)
+      body: JSON.stringify(predictions),
     };
   } catch (error) {
     console.error('Error classifying image:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Error classifying image' })
+      body: JSON.stringify({ error: 'Error classifying image' }),
     };
   }
 }
