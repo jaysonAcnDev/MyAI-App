@@ -165,7 +165,13 @@ table tr:hover {
   .left-column, .right-column {
       width: 100%;
   }
+  /* Vertical divider between columns on mobile */
   .divider {
-      display: none; /* Hide divider on small screens */
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: 10px 0;
   }
 }
+
