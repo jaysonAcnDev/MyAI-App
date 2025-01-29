@@ -1,0 +1,171 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+/* Container for the two columns */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  height: 80%;
+  max-width: 1200px;
+}
+
+/* Left column (form) */
+.left-column {
+  width: 48%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* Right column (results) */
+.right-column {
+  width: 48%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* Divider between the two columns */
+.divider {
+  width: 1px;
+  background-color: #ddd;
+  height: 100%;
+}
+
+/* Heading styling */
+h1, h2 {
+  font-size: 2em;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Label styling */
+label {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Input field styling */
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #5b9bd5;
+}
+
+/* Button styling */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #5b9bd5;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #4a8ac9;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+}
+
+table th {
+  background-color: #f4f4f4;
+}
+
+table td {
+  background-color: #fafafa;
+}
+
+table tr:hover {
+  background-color: #f0f0f0;
+}
+
+/* Hide the table by default */
+.hidden {
+  display: none;
+}
+
+/* Message inside the results box */
+#no-results-message {
+  color: #777;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+/* Results container styling (scrollable table) */
+#results-container {
+  max-height: 50vh; /* Set max height to 50% of the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Additional responsive design for smaller screens */
+@media (max-width: 900px) {
+  .container {
+      flex-direction: column;
+      height: auto;
+  }
+  .left-column, .right-column {
+      width: 100%;
+  }
+  .divider {
+      display: none; /* Hide divider on small screens */
+  }
+}
