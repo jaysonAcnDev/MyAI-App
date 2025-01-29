@@ -1,10 +1,10 @@
-import axios from 'axios';
+const axios = require('axios');
 
-const CLARIFAI_API_KEY = '7eb37963c0644a6f868d69789ad62b58'; // Replace with your API key
+const CLARIFAI_API_KEY = '7eb37963c0644a6f868d69789ad62b58';
 const CLARIFAI_API_URL = 'https://api.clarifai.com/v2/models/general-image-recognition/outputs';
 
-export async function handler(event, context) {
-  const imageUrl = event.queryStringParameters.url; // Extract the URL from the query parameter
+exports.handler = async (event) => {
+  const imageUrl = event.queryStringParameters?.url;
 
   if (!imageUrl) {
     return {
@@ -16,9 +16,7 @@ export async function handler(event, context) {
   try {
     const response = await axios.post(
       CLARIFAI_API_URL,
-      {
-        inputs: [{ data: { image: { url: imageUrl } } }],
-      },
+      { inputs: [{ data: { image: { url: imageUrl } } }] },
       {
         headers: {
           Authorization: `Key ${CLARIFAI_API_KEY}`,
@@ -27,7 +25,7 @@ export async function handler(event, context) {
       }
     );
 
-    const predictions = response.data.outputs[0].data.concepts;
+    const predictions = response.data.outputs?.[0]?.data?.concepts || [];
 
     return {
       statusCode: 200,
@@ -40,4 +38,4 @@ export async function handler(event, context) {
       body: JSON.stringify({ error: 'Error classifying image' }),
     };
   }
-}
+};
